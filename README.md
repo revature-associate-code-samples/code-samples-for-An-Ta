@@ -1,6 +1,6 @@
 ## Project 0 - Craps Application
 Web based game that follows the rules of the casino game Craps. Consumed a RESTful for dice rolls.<br/>
-Client: HTML, CSS, JS, AJAX
+<b>Client:</b> HTML, CSS, JS, AJAX
 
 ## Project 1 - Reimbursement Web Application
 Employees are able to submit a riembursment application for a manager to review, accept, or reject the reimbursement.<br/>
