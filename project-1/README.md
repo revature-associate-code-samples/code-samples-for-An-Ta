@@ -1,11 +1,17 @@
-# Craps Casino Game
-An interactive browser game that is a replica of the casino game Craps. The player rolles a set of dice which will make a fetch call to http://roll.diceapi.com/json/2d6. The result being a an array of 2 random dice roll and its values. Since this game is a replica the rules are the same as the physical game.<br/>
-[Original Repo](https://github.com/1810-java-blake/project-0-antagit)
+# Expense Reimbursement System
+The Expense Reimbursement System (ERS) will manage the process of reimbursing employees for expenses incurred while on company time. All employees in the company can login and submit requests for reimbursement and view their past tickets and pending requests. Finance managers can log in and view all reimbursement requests and past history for all employees in the company. Finance managers are authorized to approve and deny requests for expense reimbursement.
+<br/>
+[Original Repo](https://github.com/antagit/project1-ers-antagit2)
 # Technologies
-HTML, CSS, BootStrap, AJAX, JavaScript
+<b>Client Side:</b> HTML, CSS, REACT, AJAX, ReactStrap, JavaScript
+<br/>
+<b>Server Side:</b> Java, SQL, java sessions, Java servlets, JDBC
 
  # Roles and Responsibilities
-* Created a browser game using HTML
-* Used JaveScript to give functionality to game
-* Styled web pages using CSS and Bootstrap
-* Created fetch request to a RESTful api using AJAX
+* Utalized REACT library to create a dynamic single page application
+* Styled web page using CSS and ReactStrap
+* Used AJAX to send fetch request to retrieve Reimbursements and account information from SQL database
+* Set up java servlets/dispatcher serlvet to handle incoming request
+* Created Java sessions in order to identify the user
+* Made SQL database through PostgreSQL
+* Set up communication between java and SQL database by utalizing JDBC
