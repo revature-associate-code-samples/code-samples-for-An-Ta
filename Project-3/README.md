@@ -7,13 +7,15 @@ The Staging Management System allows managers to keep track of Revature associat
 # Technologies
 <b>Client Side:</b> HTML, CSS, REACT, Redux, ReactStrap, TypeScript, Axios
 <br/>
-<b>Server Side:</b> Java, SQL, Spring MVC/Boot/Data/AOP, Hibernate, JWT, AWS, Hystrix, Zuul, Eureka, FeignClient
+<b>Server Side:</b> Java, SQL, Spring MVC/Boot/Data/AOP, Hibernate, JWT, AWS, Hystrix, Zuul, Eureka, FeignClient, Junit, Mockito
 
  # Roles and Responsibilities
 * Created User, Roles, and Cohort models 
-* Setp the multiplicity relationship between User and cohort by using Hibernate
+* Setp the multiplicity relationship between User and cohort by using Hibernate annotations
 * Linked java models to SQL tables using Hibernate
 * Created User and Cohort spring bean controllers to map request to respective service
 * Created User and Cohort spring bean Services to handle to request
 * Created User and Cohort spring bean repository to query SQL database 
 * Made DTO for user model in order to create a user by given information sent from client
+* Created an exception handler to handle any bad request, and to prevent client side stack trace
+* Test method functionality and their results by utilizing Mockito and Junit
