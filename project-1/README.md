@@ -5,11 +5,7 @@ An interactive browser game that is a replica of the casino game Craps. The play
 HTML, CSS, BootStrap, AJAX, JavaScript
 
  # Roles and Responsibilities
-* 
-  Created a browser game using HTML
- *
-  Used JaveScript to give functionality to game
- * 
-  Styled web pages using CSS and Bootstrap
- * 
-   Created fetch request to a RESTful api using AJAX
+* Created a browser game using HTML
+* Used JaveScript to give functionality to game
+* Styled web pages using CSS and Bootstrap
+* Created fetch request to a RESTful api using AJAX
