@@ -42,14 +42,10 @@ public class UserController {
 	private CohortService cohortService;
 
 	@Autowired
-	private CognitoUtil cognitoUtil;
-
-	@Autowired
 	private ResponseEntityUtil responseEntity;
 
 	Logger log = Logger.getRootLogger();
 
-	@CognitoAuth(role = "user")
 	@GetMapping()
 	public ResponseEntity<List<User>> findAll() {
 
@@ -58,7 +54,6 @@ public class UserController {
 
 	// need to change this to unique end point
 	@GetMapping("id/{id}")
-	@CognitoAuth(role = "user")
 //	@Logging()
 	// Might need to change?
 	public ResponseEntity<User> findOneById(@PathVariable int id) {
@@ -67,7 +62,6 @@ public class UserController {
 	}
 
 	@GetMapping(path="email/{email:.+}")
-	@CognitoAuth(role = "user")
 	public ResponseEntity<User> findOneByEmail(@PathVariable String email) {
 		HttpHeaders headers = new HttpHeaders();
 		headers.add("Content-Type", "application/json");
@@ -82,14 +76,12 @@ public class UserController {
 
 	// Need to fix
 	@GetMapping("info")
-	@CognitoAuth(role = "user")
 	public ResponseEntity<User> userInfo() {
 
 		return new ResponseEntity<User>(userService.userInfo(), HttpStatus.OK);
 	}
 
 	@GetMapping("cohorts/{id}")
-	@CognitoAuth(role = "user")
 //	@Logging()
 	public ResponseEntity<List<User>> findAllByCohortId(@PathVariable int id) {
 		return new ResponseEntity<List<User>>(userService.findAllByCohortId(id), HttpStatus.OK);
@@ -109,7 +101,6 @@ public class UserController {
 	}
 
 	@PatchMapping("{userid}/cohorts/{cohortid}")
-	@CognitoAuth(role = "user")
 	public ResponseEntity<User> updateCohort(@PathVariable int userid, @PathVariable int cohortid) {
 		Cohort cohort = cohortService.findOneByCohortId(cohortid);
 		User user = userService.findOneById(userid);
@@ -118,18 +109,7 @@ public class UserController {
 		return new ResponseEntity<User>(userService.saveUser(user), HttpStatus.OK);
 	}
 
-	// Need to do something with non created users.
-	@PostMapping("cohorts/{id}")
-	@CognitoAuth(role = "staging-manager")
-	public ResponseEntity<CohortUserListOutputDto> saveUsers(@RequestBody UserListInputDto userList,
-			@PathVariable int id) throws IOException, URISyntaxException {
-		CohortUserListOutputDto cuListOutput = userService.saveUsers(userList, id);
-		return new ResponseEntity<CohortUserListOutputDto>(cuListOutput, HttpStatus.OK);
-
-	}
-
 	@PatchMapping()
-	@CognitoAuth(role = "user")
 	public ResponseEntity<User> updateProfile(@RequestBody User u) {
 		return new ResponseEntity<User>(userService.updateProfile(u), HttpStatus.OK);
 	}
