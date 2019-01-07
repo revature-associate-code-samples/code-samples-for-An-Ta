@@ -51,43 +51,5 @@ public class CohortServiceImpl implements CohortService {
 		return cohortRepo.findAll();
 	}
 
-	@Override
-	public CohortUserListOutputDto saveCohortWithUserList(CohortUserListInputDto cuList) throws IOException {
-		User trainer = userService.findOneByEmail(cuList.getTrainerEmail());
-
-		log.info("\n Trainer is: " + trainer);
-		CohortUserListOutputDto cuListOutput = new CohortUserListOutputDto();
-		Cohort cohort = new Cohort(cuList.getCohortName(), cuList.getCohortDescription(), trainer);
-
-		log.info("Cohort is: " + cohort);
-		Cohort savedCohort = saveCohort(cohort);
-		cuListOutput.setCohort(savedCohort);
-
-		if (cuListOutput.getCohort() == null) {
-			cuListOutput.setMessages("Cohort could not be created or already exists, all users rejected");
-			return cuListOutput;
-		}
-
-		if (cuList.getUserList() == null) {
-			cuListOutput.setMessages("Created cohort with no users");
-			return cuListOutput;
-		}
-
-		List<User> users = cuList.toUsersList(savedCohort);
-
-		for (User user : users) {
-			User tempUser = cognitoUtil.registerUser(user);
-			if (tempUser != null)
-				cuListOutput.getAcceptedUsers().add(tempUser);
-			else
-				cuListOutput.getRejectedUsers().add(user);
-		}
-
-		cuListOutput.setMessages("Created Cohort with users");
-		log.info("Accepted Users: " + cuListOutput.getAcceptedUsers());
-		log.info("Rejected Users: " + cuListOutput.getRejectedUsers());
-		return cuListOutput;
-
-	}
 
 }
