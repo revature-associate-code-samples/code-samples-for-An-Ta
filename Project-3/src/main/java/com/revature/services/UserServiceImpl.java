@@ -25,9 +25,6 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	CohortService cohortService;
 
-	@Autowired
-	CognitoUtil cUtil;
-
 	Logger log = Logger.getRootLogger();
 
 	@Override
@@ -102,34 +99,5 @@ public class UserServiceImpl implements UserService {
 		return tempAppUser;
 	}
 
-	public User userInfo() {
-		String email = cUtil.extractTokenEmail();
-		System.out.println("Checking email: " + email);
-		return userRepo.findByEmailIgnoreCase(email);
-	}
-
-	@Override
-	public CohortUserListOutputDto saveUsers(UserListInputDto userList, int id) throws IOException {
-		log.info(userList);
-		Cohort cohort = cohortService.findOneByCohortId(id);
-		List<User> users = userList.toUsersList(cohort);
-
-		CohortUserListOutputDto cuListOutput = new CohortUserListOutputDto();
-		cuListOutput.setCohort(cohort);
-		if (cohort != null) {
-			for (User user : users) {
-				User tempUser = cognitoUtil.registerUser(user);
-				if (tempUser != null)
-					cuListOutput.getAcceptedUsers().add(tempUser);
-				else
-					cuListOutput.getRejectedUsers().add(user);
-			}
-			cuListOutput.setMessages("Returned Accepted Users and Rejected Users");
-		} else {
-			cuListOutput.setMessages("Cohort could not be found");
-			cuListOutput.setRejectedUsers(users);
-		}
-		return cuListOutput;
-	}
 
 }
