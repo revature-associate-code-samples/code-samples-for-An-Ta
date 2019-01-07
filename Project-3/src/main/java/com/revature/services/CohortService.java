@@ -19,6 +19,4 @@ public interface CohortService {
 
 	List<Cohort> findAll();
 
-	CohortUserListOutputDto saveCohortWithUserList(CohortUserListInputDto cuList) throws IOException;
-
 }
